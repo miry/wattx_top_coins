@@ -31,7 +31,7 @@ func main() {
 	// Routes
 	// GET /version
 	versionHandler := handler.NewVersionHandler(app)
-	app.Handler.HandleFunc("/version", mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JsonHeaderMiddleware(versionHandler.Show))))
+	app.Handler.HandleFunc("/version", mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JSONHeaderMiddleware(versionHandler.Show))))
 
 	// GET /metrics
 	app.Handler.Handle("/metrics", promhttp.Handler())

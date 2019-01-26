@@ -1,3 +1,7 @@
+[![CircleCI](https://circleci.com/gh/miry/wattx_top_coins.svg?style=svg)](https://circleci.com/gh/miry/wattx_top_coins)
+[![Go Report Card](https://goreportcard.com/badge/github.com/miry/wattx_top_coins)](https://goreportcard.com/report/github.com/miry/wattx_top_coins)
+
+
 # Top Coins Problem
 
 # Development

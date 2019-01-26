@@ -9,6 +9,7 @@ import (
 
 type middlewareFunc func(w http.ResponseWriter, r *http.Request)
 
+// LoggingMiddleware add messages to output for each request
 func LoggingMiddleware(app *app.App, f middlewareFunc) middlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		app.Logger.Info().Msgf("%s %s", r.Method, html.EscapeString(r.URL.Path))
@@ -16,13 +17,15 @@ func LoggingMiddleware(app *app.App, f middlewareFunc) middlewareFunc {
 	}
 }
 
-func JsonHeaderMiddleware(f middlewareFunc) middlewareFunc {
+// JSONHeaderMiddleware sets reponse as JSON
+func JSONHeaderMiddleware(f middlewareFunc) middlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header()["Content-Type"] = []string{"application/json"}
 		f(w, r)
 	}
 }
 
+// PanicMiddleware return 500 http status if some panic happen
 func PanicMiddleware(app *app.App, f middlewareFunc) middlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer func() {

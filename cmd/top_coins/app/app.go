@@ -59,7 +59,8 @@ func (app *App) Serve() {
 // Shutdown gracefully stop HTTP server
 func (app *App) Shutdown() {
 	app.Logger.Info().Msg("Shutting down the server...")
-	ctx, _ := context.WithTimeout(context.Background(), ScoketTimeout)
+	ctx, cancel := context.WithTimeout(context.Background(), ScoketTimeout)
+	defer cancel()
 	app.server.Shutdown(ctx)
 	app.Logger.Info().Msg("Server stopped")
 }
