@@ -1,5 +1,32 @@
 # Top Coins Problem
 
+# Development
+
+## Create module
+
+```shell
+$ go mod init github.com/miry/wattx_top_coins
+```
+
+## Docker
+
+Image: https://cloud.docker.com/repository/docker/miry/top_coins/general
+
+## Run
+
+```shell
+$ go generate pkg/conf/vsn.go
+$ go run cmd/top_coins/main.go
+$ curl localhost:8080/version
+```
+
+Use container to run application
+
+```shell
+$ ./bin/local
+$ curl localhost:8080/version
+```
+
 ## Requirements
 
 - It should have scalable components
@@ -143,11 +170,3 @@ Kubernetes gives solution to run con tasks. For solution where need only scrape 
 
 
 ![Cluster](img/structure.jpg)
-
-# Development
-
-## Create module
-
-```
-go mod init github.com/miry/wattx_top_coins
-```

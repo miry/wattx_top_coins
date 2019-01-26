@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+./bin/build
+
+current_version=`git rev-parse HEAD`
+current_tag="$current_version"
+
+docker_image_base="miry/top_coins"
+docker_image="$docker_image_base:$current_tag"
+
+docker run -p 8080:8080 -it "$docker_image"
