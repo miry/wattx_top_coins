@@ -18,6 +18,12 @@ Image: https://cloud.docker.com/repository/docker/miry/top_coins/general
 
 ## Run
 
+Setup all dependicies:
+
+```shell
+$ ./bin/setup
+```
+
 ```shell
 $ go generate pkg/conf/vsn.go
 $ go run cmd/top_coins/main.go

@@ -13,7 +13,8 @@ WORKDIR /go/src/github.com/miry/wattx_top_coins
 COPY . .
 
 ENV GO111MODULE=on
-RUN go get \
+
+RUN go get . \
  && go generate pkg/conf/vsn.go \
  && go build -o /go/bin/top_coins cmd/top_coins/main.go
 

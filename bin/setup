@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+brew bundle
+
+go generate pkg/conf/vsn.go
+
+./bin/lint
+go test ./... -v
+
+minikube start
