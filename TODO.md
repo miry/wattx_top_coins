@@ -11,12 +11,12 @@ Roadmap
 Backlog
 =======
 
-- [ ] Design: Collect specification data
-- [ ] Design: Design multiple solution for different cases
-- [ ] Walking Skeleton: Create base structure of folders
-- [ ] Walking Skeleton: sceleton of web application
-- [ ] Walking Skeleton: Run tests on CI/CD service
-- [ ] Walking Skeleton: Build docker images
+- [x] Design: Collect specification data
+- [x] Design: Design multiple solution for different cases
+- [x] Walking Skeleton: Create base structure of folders
+- [x] Walking Skeleton: sceleton of web application
+- [x] Walking Skeleton: Run tests on CI/CD service
+- [x] Walking Skeleton: Build docker images
 - [ ] Walking Skeleton: Build local cluster for pre production environment: Kubernetes
 - [ ] Web application: build fake endpoint
 - [ ] Web application: create adapter for ranking service
