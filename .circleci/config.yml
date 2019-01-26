@@ -35,9 +35,7 @@ jobs:
       - checkout
       - run: go get -u golang.org/x/lint/golint
       - run: go get -v -t -d ./...
-      - run: go generate pkg/conf/vsn.go
-      - run: go vet ./...
-      - run: golint -set_exit_status ./...
+      - run: ./bin/lint
 
   build:
     environment:

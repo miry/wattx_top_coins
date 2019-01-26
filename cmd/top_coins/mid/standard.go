@@ -7,10 +7,11 @@ import (
 	"github.com/miry/wattx_top_coins/cmd/top_coins/app"
 )
 
-type middlewareFunc func(w http.ResponseWriter, r *http.Request)
+// MiddlewareFunc shortcut for handler func
+type MiddlewareFunc func(w http.ResponseWriter, r *http.Request)
 
 // LoggingMiddleware add messages to output for each request
-func LoggingMiddleware(app *app.App, f middlewareFunc) middlewareFunc {
+func LoggingMiddleware(app *app.App, f MiddlewareFunc) MiddlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		app.Logger.Info().Msgf("%s %s", r.Method, html.EscapeString(r.URL.Path))
 		f(w, r)
@@ -18,7 +19,7 @@ func LoggingMiddleware(app *app.App, f middlewareFunc) middlewareFunc {
 }
 
 // JSONHeaderMiddleware sets reponse as JSON
-func JSONHeaderMiddleware(f middlewareFunc) middlewareFunc {
+func JSONHeaderMiddleware(f MiddlewareFunc) MiddlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header()["Content-Type"] = []string{"application/json"}
 		f(w, r)
@@ -26,7 +27,7 @@ func JSONHeaderMiddleware(f middlewareFunc) middlewareFunc {
 }
 
 // PanicMiddleware return 500 http status if some panic happen
-func PanicMiddleware(app *app.App, f middlewareFunc) middlewareFunc {
+func PanicMiddleware(app *app.App, f MiddlewareFunc) MiddlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		defer func() {
 			if err := recover(); err != nil {
