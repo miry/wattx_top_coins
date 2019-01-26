@@ -18,7 +18,7 @@ func LoggingMiddleware(app *app.App, f MiddlewareFunc) MiddlewareFunc {
 	}
 }
 
-// JSONHeaderMiddleware sets reponse as JSON
+// JSONHeaderMiddleware sets response as JSON
 func JSONHeaderMiddleware(f MiddlewareFunc) MiddlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		w.Header()["Content-Type"] = []string{"application/json"}
