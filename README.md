@@ -9,6 +9,7 @@
 - Logging
 - Tests
 - Tracing
+- [Go modules](https://github.com/golang/go/wiki/Modules)
 
 ## Design
 
@@ -142,3 +143,11 @@ Kubernetes gives solution to run con tasks. For solution where need only scrape 
 
 
 ![Cluster](img/structure.jpg)
+
+# Development
+
+## Create module
+
+```
+go mod init github.com/miry/wattx_top_coins
+```
