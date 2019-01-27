@@ -24,17 +24,18 @@ Setup all dependicies:
 $ ./bin/setup
 ```
 
+Run application on local environment
+
 ```shell
 $ go generate pkg/conf/vsn.go
 $ go run cmd/top_coins/main.go
 $ curl localhost:8080/version
 ```
 
-Use container to run application
+Use containers to run application
 
 ```shell
 $ ./bin/local
-$ curl localhost:8080/version
 ```
 
 ## Requirements

@@ -2,8 +2,8 @@ Roadmap
 =======
 
 - [x] Design
-- [ ] Automation: CI/CD
-- [ ] Walking Skeleton
+- [x] Automation: CI/CD
+- [x] Walking Skeleton
 - [ ] Web application
 - [ ] Ranking Service
 - [ ] Pricing Service
@@ -17,7 +17,7 @@ Backlog
 - [x] Walking Skeleton: sceleton of web application
 - [x] Walking Skeleton: Run tests on CI/CD service
 - [x] Walking Skeleton: Build docker images
-- [ ] Walking Skeleton: Build local cluster for pre production environment: Kubernetes
+- [x] Walking Skeleton: Build local cluster for pre production environment: Kubernetes
 - [ ] Web application: build fake endpoint
 - [ ] Web application: create adapter for ranking service
 - [ ] Web application: create adapter for prrice service
