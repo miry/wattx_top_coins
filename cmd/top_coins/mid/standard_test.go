@@ -16,22 +16,40 @@ func GetTestPanicHandler(w http.ResponseWriter, r *http.Request) {
 	panic("it should be handle")
 }
 
+func GetTestHandler(w http.ResponseWriter, r *http.Request) {
+
+}
+
 func TestPanic(t *testing.T) {
-	assert := assert.New(t)
+	a := assert.New(t)
 
 	app, err := app.NewApp()
-	assert.NotNil(t, err)
+	a.NotNil(t, err)
 
 	ts := httptest.NewServer(http.HandlerFunc(mid.PanicMiddleware(app, GetTestPanicHandler)))
 	defer ts.Close()
 
 	res, err := http.Get(ts.URL)
-	assert.NotNil(t, err)
+	a.NotNil(t, err)
 
 	result, err := ioutil.ReadAll(res.Body)
 	res.Body.Close()
-	assert.NotNil(t, err)
+	a.NotNil(t, err)
 
-	assert.Equal(500, res.StatusCode)
-	assert.Equal("it should be handle\n", string(result))
+	a.Equal(500, res.StatusCode)
+	a.Equal("it should be handle\n", string(result))
+	a.Contains(res.Header["Content-Type"], "text/plain; charset=utf-8")
+}
+
+func TestJSONHeader(t *testing.T) {
+	a := assert.New(t)
+
+	ts := httptest.NewServer(http.HandlerFunc(mid.JSONHeaderMiddleware(GetTestHandler)))
+	defer ts.Close()
+
+	res, err := http.Get(ts.URL)
+	a.NotNil(t, err)
+
+	a.Equal(200, res.StatusCode)
+	a.Contains(res.Header["Content-Type"], "application/json")
 }
