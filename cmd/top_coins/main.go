@@ -29,6 +29,10 @@ func main() {
 	}()
 
 	// Routes
+	// GET /
+	coinsHandler := handler.NewCoinsHandler(app)
+	app.Handler.HandleFunc("/", mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JSONHeaderMiddleware(coinsHandler.List))))
+
 	// GET /version
 	versionHandler := handler.NewVersionHandler(app)
 	app.Handler.HandleFunc("/version", mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JSONHeaderMiddleware(versionHandler.Show))))
