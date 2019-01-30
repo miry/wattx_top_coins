@@ -18,7 +18,7 @@ Backlog
 - [x] Walking Skeleton: Run tests on CI/CD service
 - [x] Walking Skeleton: Build docker images
 - [x] Walking Skeleton: Build local cluster for pre production environment: Kubernetes
-- [ ] Web application: build fake endpoint
+- [x] Web application: build fake endpoint
 - [ ] Web application: create adapter for ranking service
 - [ ] Web application: create adapter for prrice service
 - [ ] Web application: setup cache for prices and rankings
