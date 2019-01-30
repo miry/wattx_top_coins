@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"net/http"
 
-	"github.com/miry/wattx_top_coins/cmd/top_coins/app"
+	"github.com/miry/wattx_top_coins/pkg/app"
 	"github.com/miry/wattx_top_coins/pkg/conf"
 )
 

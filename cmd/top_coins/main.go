@@ -6,9 +6,9 @@ import (
 	"os/signal"
 	"syscall"
 
-	"github.com/miry/wattx_top_coins/cmd/top_coins/app"
-	"github.com/miry/wattx_top_coins/cmd/top_coins/handler"
-	"github.com/miry/wattx_top_coins/cmd/top_coins/mid"
+	"github.com/miry/wattx_top_coins/pkg/app"
+	"github.com/miry/wattx_top_coins/pkg/handler"
+	mid "github.com/miry/wattx_top_coins/pkg/middleware"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 )
 

@@ -6,8 +6,8 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/miry/wattx_top_coins/cmd/top_coins/app"
-	"github.com/miry/wattx_top_coins/cmd/top_coins/mid"
+	"github.com/miry/wattx_top_coins/pkg/app"
+	mid "github.com/miry/wattx_top_coins/pkg/middleware"
 	"github.com/stretchr/testify/assert"
 )
 

@@ -6,19 +6,20 @@ import (
 	"net/http/httptest"
 	"testing"
 
-	"github.com/miry/wattx_top_coins/cmd/top_coins/app"
-	"github.com/miry/wattx_top_coins/cmd/top_coins/handler"
+	"github.com/miry/wattx_top_coins/pkg/app"
+	"github.com/miry/wattx_top_coins/pkg/conf"
+	"github.com/miry/wattx_top_coins/pkg/handler"
 	"github.com/stretchr/testify/assert"
 )
 
-func TestCoinsList(t *testing.T) {
+func TestVerrsionShow(t *testing.T) {
 	a := assert.New(t)
 
 	app, err := app.NewApp()
 	a.NotNil(t, err)
 
-	handler := handler.NewCoinsHandler(app)
-	ts := httptest.NewServer(http.HandlerFunc(handler.List))
+	handler := handler.NewVersionHandler(app)
+	ts := httptest.NewServer(http.HandlerFunc(handler.Show))
 	defer ts.Close()
 
 	res, err := http.Get(ts.URL)
@@ -29,6 +30,5 @@ func TestCoinsList(t *testing.T) {
 	a.NotNil(t, err)
 
 	a.Equal(200, res.StatusCode)
-	a.Contains(string(result), "\"data\":")
-	a.Contains(string(result), "\"symbol\":\"BTC\"")
+	a.Contains(string(result), conf.GitHash)
 }

@@ -4,7 +4,7 @@ import (
 	"html"
 	"net/http"
 
-	"github.com/miry/wattx_top_coins/cmd/top_coins/app"
+	"github.com/miry/wattx_top_coins/pkg/app"
 )
 
 // MiddlewareFunc shortcut for handler func
