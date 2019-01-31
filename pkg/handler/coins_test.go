@@ -11,24 +11,26 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestCoinsList(t *testing.T) {
+func TestCoinsListHandler(t *testing.T) {
 	a := assert.New(t)
 
 	app, err := app.NewApp()
-	a.NotNil(t, err)
+	a.Nil(err)
+	subject := handler.NewCoinsHandler(app)
 
-	handler := handler.NewCoinsHandler(app)
-	ts := httptest.NewServer(http.HandlerFunc(handler.List))
-	defer ts.Close()
+	req, err := http.NewRequest("GET", "localhost:8080/", nil)
+	a.Nil(err)
+	rec := httptest.NewRecorder()
 
-	res, err := http.Get(ts.URL)
-	a.NotNil(t, err)
+	subject.List(rec, req)
+
+	res := rec.Result()
+	defer res.Body.Close()
+	a.Equal(http.StatusOK, res.StatusCode)
 
 	result, err := ioutil.ReadAll(res.Body)
-	res.Body.Close()
-	a.NotNil(t, err)
+	a.Nil(err)
 
-	a.Equal(200, res.StatusCode)
 	a.Contains(string(result), "\"data\":")
 	a.Contains(string(result), "\"symbol\":\"BTC\"")
 }

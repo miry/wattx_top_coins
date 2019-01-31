@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
@@ -28,17 +29,7 @@ func main() {
 		}
 	}()
 
-	// Routes
-	// GET /
-	coinsHandler := handler.NewCoinsHandler(app)
-	app.Handler.HandleFunc("/", mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JSONHeaderMiddleware(coinsHandler.List))))
-
-	// GET /version
-	versionHandler := handler.NewVersionHandler(app)
-	app.Handler.HandleFunc("/version", mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JSONHeaderMiddleware(versionHandler.Show))))
-
-	// GET /metrics
-	app.Handler.Handle("/metrics", promhttp.Handler())
+	Routes(app, app.Handler)
 
 	// Process
 	stop := make(chan os.Signal, 1)
@@ -49,4 +40,18 @@ func main() {
 	// Stop
 	<-stop
 	app.Shutdown()
+}
+
+// Routes map enpoints to handlers
+func Routes(app *app.App, server *http.ServeMux) {
+	// GET /
+	coinsHandler := handler.NewCoinsHandler(app)
+	server.HandleFunc("/", mid.RootMiddleware(mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JSONHeaderMiddleware(coinsHandler.List)))))
+
+	// GET /version
+	versionHandler := handler.NewVersionHandler(app)
+	server.HandleFunc("/version", mid.LoggingMiddleware(app, mid.PanicMiddleware(app, mid.JSONHeaderMiddleware(versionHandler.Show))))
+
+	// GET /metrics
+	server.Handle("/metrics", promhttp.Handler())
 }

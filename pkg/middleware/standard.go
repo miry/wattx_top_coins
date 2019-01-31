@@ -10,6 +10,17 @@ import (
 // MiddlewareFunc shortcut for handler func
 type MiddlewareFunc func(w http.ResponseWriter, r *http.Request)
 
+// RootgMiddleware ignore sub pathes
+func RootMiddleware(f MiddlewareFunc) MiddlewareFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		if r.URL.Path != "/" {
+			http.NotFound(w, r)
+			return
+		}
+		f(w, r)
+	}
+}
+
 // LoggingMiddleware add messages to output for each request
 func LoggingMiddleware(app *app.App, f MiddlewareFunc) MiddlewareFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
