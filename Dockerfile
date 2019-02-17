@@ -16,6 +16,7 @@ ENV GO111MODULE=on
 
 RUN go get . \
  && go generate pkg/conf/vsn.go \
+ && go build -o /go/bin/coinmarketcapctl cmd/coinmarketcapctl/main.go \
  && go build -o /go/bin/top_coins cmd/top_coins/main.go
 
 FROM alpine:3.8
@@ -28,7 +29,7 @@ RUN apk add --no-cache \
 ENV PORT 8080
 EXPOSE ${PORT}
 
-COPY --from=build /go/bin/top_coins /top_coins
+COPY --from=build /go/bin/{top_coins,coinmarketcapctl} /
 CMD ["/top_coins"]
 
 HEALTHCHECK --interval=5m --timeout=3s \

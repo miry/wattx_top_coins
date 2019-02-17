@@ -38,6 +38,12 @@ Use containers to run application
 $ ./bin/local
 ```
 
+### Coinmarketcap
+
+```shell
+$ go run cmd/coinmarketcapctl/main.go
+```
+
 ## Requirements
 
 - It should have scalable components
