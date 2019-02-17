@@ -7,8 +7,8 @@ import (
 	"testing"
 
 	"github.com/miry/wattx_top_coins/pkg/app"
-	"github.com/miry/wattx_top_coins/pkg/conf"
 	"github.com/miry/wattx_top_coins/pkg/handler"
+	"github.com/miry/wattx_top_coins/pkg/version"
 	"github.com/stretchr/testify/assert"
 )
 
@@ -30,5 +30,5 @@ func TestVerrsionShow(t *testing.T) {
 	a.NotNil(t, err)
 
 	a.Equal(200, res.StatusCode)
-	a.Contains(string(result), conf.GitHash)
+	a.Contains(string(result), version.Get().String())
 }

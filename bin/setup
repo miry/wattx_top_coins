@@ -4,7 +4,7 @@ set -euo pipefail
 
 brew bundle
 
-go generate pkg/conf/vsn.go
+go generate pkg/version/base.go
 
 ./bin/lint
 go test ./... -v

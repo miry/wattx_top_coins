@@ -5,7 +5,7 @@ import (
 	"net/http"
 
 	"github.com/miry/wattx_top_coins/pkg/app"
-	"github.com/miry/wattx_top_coins/pkg/conf"
+	"github.com/miry/wattx_top_coins/pkg/version"
 )
 
 // VersionHandler process version endpoint
@@ -27,7 +27,7 @@ func NewVersionHandler(app *app.App) *VersionHandler {
 
 // Show build response of current version
 func (h *VersionHandler) Show(w http.ResponseWriter, r *http.Request) {
-	resp := versionResp{conf.GitHash, conf.GitBranch, conf.BuildDate, conf.BuildUnixTime}
+	resp := version.Get()
 	if err := json.NewEncoder(w).Encode(resp); err != nil {
 		http.Error(w, err.Error(), 500)
 		h.app.Logger.Error().Err(err).Msg("Could not render version")

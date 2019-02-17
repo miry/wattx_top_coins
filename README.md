@@ -27,7 +27,6 @@ $ ./bin/setup
 Run application on local environment
 
 ```shell
-$ go generate pkg/conf/vsn.go
 $ go run cmd/top_coins/main.go
 $ curl localhost:8080/version
 ```
@@ -40,8 +39,10 @@ $ ./bin/local
 
 ### Coinmarketcap
 
+Commandline Client to the service https://coinmarketcap.com/api/documentation/v1/
+
 ```shell
-$ go run cmd/coinmarketcapctl/main.go
+$ go run cmd/coinmarketcapctl/main.go --api-key=xxxx
 ```
 
 ## Requirements

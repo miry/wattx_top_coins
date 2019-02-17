@@ -11,4 +11,4 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
-/pkg/conf/vsn_generated.go
+/pkg/version/base_generated.go

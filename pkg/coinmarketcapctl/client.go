@@ -1,9 +1,10 @@
 package coinmarketcap
 
 import (
-	"encoding/json"
 	"net/http"
 	"net/url"
+
+	"github.com/miry/wattx_top_coins/pkg/modules"
 )
 
 type Client struct {
@@ -14,8 +15,8 @@ type Client struct {
 	httpClient *http.Client
 }
 
-func (c *Client) ListUsers() ([]User, error) {
-	rel := &url.URL{Path: "/users"}
+func (c *Client) Listings() ([]modules.Coin, error) {
+	rel := &url.URL{Path: "/v1/cryptocurrency/listings/latest"}
 	u := c.BaseURL.ResolveReference(rel)
 	req, err := http.NewRequest("GET", u.String(), nil)
 	if err != nil {
@@ -30,7 +31,6 @@ func (c *Client) ListUsers() ([]User, error) {
 	}
 	defer resp.Body.Close()
 
-	var users []User
-	err = json.NewDecoder(resp.Body).Decode(&users)
-	return users, err
+	var coins []modules.Coin
+	return coins, nil
 }

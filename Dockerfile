@@ -15,7 +15,7 @@ COPY . .
 ENV GO111MODULE=on
 
 RUN go get . \
- && go generate pkg/conf/vsn.go \
+ && go generate pkg/version/base.go \
  && go build -o /go/bin/coinmarketcapctl cmd/coinmarketcapctl/main.go \
  && go build -o /go/bin/top_coins cmd/top_coins/main.go
 

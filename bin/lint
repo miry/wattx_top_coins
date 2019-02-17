@@ -2,7 +2,6 @@
 
 set -euo pipefail
 
-go generate pkg/conf/vsn.go
 go vet ./...
 $(go env GOPATH)/bin/golint -set_exit_status ./cmd/...
 
